@@ -39,7 +39,7 @@ class Template {
 		self::parse(); // Parse necessary variables from the template file
 
 
-
+		$output == true ? echo self::$file : return self::$file;
 	}
 
 	/**
@@ -65,8 +65,24 @@ class Template {
 	 * @return boolean
 	 */
 	static private function parse() {
+
+		// Clean Whitespaces
+		self::$file = trim(self::$file);
+
+		// Parse variables
 		foreach(self::$values as $key => $val) {
-			self::$file = preg_replace("/\[@{$key}\]/", $val, self::$file);
+			if(!is_array($val)) {
+				self::$file = preg_replace("/\{{$key}\}/", $val, self::$file);
+			} else {
+				foreach($val as $subKey => $subVal) {
+					self::$file = preg_replace("/\\{{$key\.{$subKey}\}/", $subVal, self::$file);
+				}
+			}
+		}
+
+		// Parse PHP logic
+		while(preg_match("/\{php\.s\}(.*?)\{php\.e\}/", $self::$file)) {
+			self::$file = preg_replace("/\{p\.s\}(.*?)\{p\.e\}/", "eval($1)", self::$file);
 		}
 	}
 
