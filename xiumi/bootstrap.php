@@ -14,7 +14,7 @@ final class Xiumi {
 	 * @param array
 	 * @access private
 	 */
-	static private $matches = array();
+	static public $matches = array();
 
 	/**
 	 * Objects array container
@@ -53,6 +53,7 @@ final class Xiumi {
 		define('APP_PATH', ROOT_PATH . 'application' . DS);
 
 		require_once XUMI_PATH . "settings.php";
+		require_once CORE_PATH . "core.controller.php";
 		require_once CORE_PATH . "core.functions.php";
 		require_once CORE_PATH . "core.routing.php";
 
@@ -91,7 +92,7 @@ final class Xiumi {
 			self::$object[$key] = '';
 		}
 
-		self::$object = self::arrayToObject(self::$object);
+		self::$object = coreFunc::arrayToObject(self::$object);
 
 		foreach($array as $key => $val) {
 
@@ -168,14 +169,14 @@ final class Xiumi {
 	 */
 	static public function dispatch() {
 		self::$matches = Routing::match();
-
-		if(is_array(self::$matches)) {
-
-		} else {
-
+		if(isset(self::$matches['target']['controller'])) {
+			require_once APP_PATH . "controllers" . DS . Xiumi::$matches['target']['controller'] . ".php";
+			$controller = Xiumi::$matches['target']['controller'] . "Controller";
+			$action = isset(Xiumi::$matches['target']['action']) ? Xiumi::$matches['target']['action'] : '';
+			
+			new $controller($action);
 		}
-
-
+		
 	}
 
 }

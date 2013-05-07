@@ -10,17 +10,5 @@
 require_once dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . "xiumi\bootstrap.php";
 
 Xiumi::bootIt();
-
-
-Routing::setBasePath('/github.xiumi');
-
-
-
-$match = Routing::match();
+Xiumi::dispatch();
 ?>
-<h3>Current request: </h3>
-<pre>
-	Target: <?php var_dump($match['target']); ?>
-	Params: <?php var_dump($match['params']); ?>
-	Name: 	<?php var_dump($match['name']); ?>
-</pre>
