@@ -7,6 +7,7 @@
  * @package Framework Bootstrap File
  */
 
+
 final class Xiumi {
 
 	/**
@@ -52,19 +53,12 @@ final class Xiumi {
 		define('LIBRARY_PATH', CORE_PATH . DS . 'library' . DS);
 		define('APP_PATH', ROOT_PATH . 'application' . DS);
 
-		require_once XUMI_PATH . "settings.php";
 		require_once CORE_PATH . "core.controller.php";
 		require_once CORE_PATH . "core.functions.php";
 		require_once CORE_PATH . "core.routing.php";
 
-		self::$settings = $settings;
-		Routing::setBasePath('/github.xiumi');
-
-		if(isset(self::$settings['baseRouting'])) {
-			foreach(self::$settings['baseRouting'] as $array) {
-				eval("Routing::map('" . implode('\', \'', $array)."');");
-			}
-		}
+		require_once APP_PATH . "settings.php";
+		require_once APP_PATH . "routes.php";
 
 	}
 
@@ -169,10 +163,11 @@ final class Xiumi {
 	 */
 	static public function dispatch() {
 		self::$matches = Routing::match();
+
 		if(isset(self::$matches['target']['controller'])) {
-			require_once APP_PATH . "controllers" . DS . Xiumi::$matches['target']['controller'] . ".php";
-			$controller = Xiumi::$matches['target']['controller'] . "Controller";
-			$action = isset(Xiumi::$matches['target']['action']) ? Xiumi::$matches['target']['action'] : '';
+			require_once APP_PATH . "controllers" . DS . self::$matches['target']['controller'] . ".php";
+			$controller = self::$matches['target']['controller'] . "Controller";
+			$action = isset(Xiumi::$matches['target']['action']) ? self::$matches['target']['action'] : '';
 			
 			new $controller($action);
 		}

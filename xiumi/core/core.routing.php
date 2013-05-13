@@ -36,10 +36,6 @@ class Routing {
 
 		$route = self::$basePath . $route;
 
-		if(!is_array($target)) {
-			$target = json_decode($target, true);
-		}
-
 		self::$routes[] = array($method, $route, $target, $name);
 
 		if($name) {

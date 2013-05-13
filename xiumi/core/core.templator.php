@@ -79,11 +79,6 @@ class Template {
 				}
 			}
 		}
-
-		// Parse PHP logic
-		while(preg_match("/\{php\.s\}(.*?)\{php\.e\}/", $self::$file)) {
-			self::$file = preg_replace("/\{p\.s\}(.*?)\{p\.e\}/", "eval($1)", self::$file);
-		}
 	}
 
 	/**
