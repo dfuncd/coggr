@@ -7,7 +7,7 @@
  * @package Application Routes file
  */
 
-Routing::setBasePath('/github.xiumi');
+Routing::setBasePath(BASE_PATH);
 
 Routing::map('GET', '/', array('controller' => 'index'));
 Routing::map('GET', '/about', array('controller' => 'index', 'action' => 'about'));

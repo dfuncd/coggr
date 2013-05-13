@@ -3,7 +3,8 @@
 class indexController extends Controller {
 
 	public function index() {
-		echo 'ho';
+		Template::set('test', array('test' => 'teasdfasdf'));
+		return Template::fetch('index');
 	}
 
 	public function about() {

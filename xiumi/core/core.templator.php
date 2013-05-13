@@ -17,6 +17,12 @@ class Template {
 	static private $file;
 
 	/**
+	 * Caches the template file for later use
+	 * @param array
+	 */
+	static private $savedtemlate = array();
+
+	/**
 	 * Values array container
 	 * @param array
 	 * @access private
@@ -29,17 +35,23 @@ class Template {
 	 * @param boolean Prints out the template or return as string [def=true]
 	 * @return string 
 	 */
-	static public function fetch($templateName, $output = true) {
+	static public function fetch($templateName, $data = array()) {
 
 		if(!file_exists($templateName)) {
 			// return something if not found
 		}
 
-		self::$file = file_get_contents($templateName);
+		self::$file = file_get_contents(APP_TPL . $templateName . ".tpl");
+
+		// Parses the data array
+		foreach($data as $key => $val) {
+			self::set($key, $val);
+		}
+
 		self::parse(); // Parse necessary variables from the template file
 
 
-		$output == true ? echo self::$file : return self::$file;
+		echo self::$file;
 	}
 
 	/**
@@ -47,14 +59,14 @@ class Template {
 	 * @param array Template array
 	 * @return string
 	 */
-	static public function merge($templates) {
+	static public function merge($templates, $data = array()) {
 		
 		if(!is_array($templates)) {
 			return $templates;
 		}
 
 		foreach($templates as $tplBit) {
-
+			self::fetch($tplBit);
 		}
 
 	}
@@ -70,15 +82,19 @@ class Template {
 		self::$file = trim(self::$file);
 
 		// Parse variables
-		foreach(self::$values as $key => $val) {
-			if(!is_array($val)) {
-				self::$file = preg_replace("/\{{$key}\}/", $val, self::$file);
-			} else {
-				foreach($val as $subKey => $subVal) {
-					self::$file = preg_replace("/\\{{$key\.{$subKey}\}/", $subVal, self::$file);
+		if(is_array(self::$values)) {
+			foreach(self::$values as $key => $val) {
+				if(!is_array($val)) {
+					self::$file = preg_replace("/\{{$key}\}/", $val, self::$file);
+				} else {
+					foreach($val as $subKey => $subVal) {
+						self::$file = preg_replace("/\{$key\.$subKey\}/", $subVal, self::$file);
+					}
 				}
 			}
 		}
+
+		// Parse commands
 	}
 
 	/**
@@ -90,7 +106,6 @@ class Template {
 
 		// If we detect the input to be an array
 		if(is_array($inputKey)) {
-			
 			foreach($inputKey as $key => $val) {
 				self::$values[$key] = $val;
 			}
@@ -98,7 +113,6 @@ class Template {
 		} else {
 			self::$values[$inputKey] = $val;
 		}
-
 
 		return self::$values;
 	}

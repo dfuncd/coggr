@@ -45,6 +45,8 @@ final class Xiumi {
 	 */
 	private function __construct() {
 
+		
+
 		// Define Constants
 		define('DS', DIRECTORY_SEPARATOR);
 		define('ROOT_PATH', dirname(dirname(__FILE__)) . DS);
@@ -52,14 +54,18 @@ final class Xiumi {
 		define('CORE_PATH', XUMI_PATH . 'core' . DS);
 		define('LIBRARY_PATH', CORE_PATH . DS . 'library' . DS);
 		define('APP_PATH', ROOT_PATH . 'application' . DS);
+		define('APP_TPL', APP_PATH . "templates" . DS);
+		
+		// Include application setting file
+		self::$settings = require_once APP_PATH . "settings.php";
+		define('BASE_PATH', self::$settings['BASE_PATH']);
 
 		require_once CORE_PATH . "core.controller.php";
 		require_once CORE_PATH . "core.functions.php";
 		require_once CORE_PATH . "core.routing.php";
-
-		require_once APP_PATH . "settings.php";
+		require_once CORE_PATH . "core.templator.php";
+		
 		require_once APP_PATH . "routes.php";
-
 	}
 
 	/**

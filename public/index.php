@@ -9,6 +9,5 @@
 
 require_once dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . "xiumi\bootstrap.php";
 
-Xiumi::bootIt();
-Xiumi::dispatch();
+Xiumi::bootIt() && Xiumi::dispatch();
 ?>
