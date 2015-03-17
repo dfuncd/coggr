@@ -1,5 +1,0 @@
-RewriteEngine on
-RewriteCond %{SCRIPT_FILENAME} !-d  
-RewriteCond %{SCRIPT_FILENAME} !-f
-RewriteRule ^$ public	[L]
-RewriteRule (.*) public/$1	[L]
