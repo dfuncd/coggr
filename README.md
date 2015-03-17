@@ -1,4 +1,3 @@
-Xiumi-Framework
-===============
+# Xiumi
 
-My personal web development framework
+A framework for robust architectures

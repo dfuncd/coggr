@@ -1,0 +1,27 @@
+{
+    "name": "hkzpjt/xiumi",
+    "description": "Xiumi",
+
+    "authors": [
+        {
+            "name": "rupaheizu",
+            "email": "rupaheizu@hkz.co"
+        }
+    ],
+
+    "require": {
+        "php": ">=5.5.9",
+        "symfony/http-kernel": "3.0.*@dev",
+        "symfony/http-foundation": "3.0.*@dev"
+    },
+
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+
+    "autoload": {
+        "psr-4": {
+            "Xiumi\\": "src/Xiumi"
+        }
+    }
+
+}
