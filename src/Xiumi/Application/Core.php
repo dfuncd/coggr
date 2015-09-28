@@ -1,8 +1,13 @@
 <?php
 
-namespace Xiumi;
+namespace Xiumi\Application;
 
-class Application
+class Core
 {
+
+	public function __construct()
+	{
+
+	}
 	
 }
