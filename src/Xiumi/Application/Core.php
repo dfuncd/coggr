@@ -6,6 +6,7 @@ use Illuminate\Container\Container;
 
 class Core
 {
+
 	/**
 	 * Boots Xiumi
 	 *
