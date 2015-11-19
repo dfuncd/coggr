@@ -2,7 +2,7 @@
 
 namespace Xiumi\Contract\Contianer;
 
-interface Container
+interface Container extends \Interop\Container\ContainerInterface
 {
 	
 }
