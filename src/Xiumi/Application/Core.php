@@ -27,8 +27,6 @@ class Core
 		$this->app = new Container;
 
 		$this->instance('app', $this);
-
-		$this->instance('Illuminate\Container\Container', $this);
 	}
 	
 }
