@@ -8,6 +8,20 @@ class Core
 {
 
 	/**
+	 * The names of the loaded service providers.
+	 *
+	 * @var array
+	 */
+	protected $loadedProviders = [];
+
+	/**
+	 * All of the registered service providers.
+	 *
+	 * @var array
+	 */
+	protected $serviceProviders = [];
+
+	/**
 	 * Boots Xiumi
 	 *
 	 * @return void
