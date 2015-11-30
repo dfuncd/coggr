@@ -1,5 +1,5 @@
 {
-    "name": "hkzpjt/xiumi",
+    "name": "hkzpjt/coggr",
     "description": "A framework for robust architectures",
 
     "authors": [
@@ -31,7 +31,7 @@
 
     "autoload": {
         "psr-4": {
-            "Xiumi\\": "src/Xiumi"
+            "Coggr\\": "src/Coggr"
         }
     }
 
