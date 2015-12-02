@@ -1,6 +1,6 @@
 <?php
 
-namespace Xiumi\Application;
+namespace Coggr\Application;
 
 use Illuminate\Container\Container;
 

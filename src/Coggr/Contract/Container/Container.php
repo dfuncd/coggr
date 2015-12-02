@@ -1,6 +1,6 @@
 <?php
 
-namespace Xiumi\Contract\Contianer;
+namespace Coggr\Contract\Contianer;
 
 interface Container extends \Interop\Container\ContainerInterface
 {
