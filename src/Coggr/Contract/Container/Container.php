@@ -2,7 +2,7 @@
 
 namespace Coggr\Contract\Contianer;
 
-interface Container extends \Interop\Container\ContainerInterface
+interface Container
 {
 
 	/**
