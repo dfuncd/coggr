@@ -96,7 +96,7 @@ class Core
 		foreach($this->serviceProviders as $key => $value) {
 			call_user_func_array(function ($key, $value) use ($name) {
 				return $value instanceof $name;
-			}, []);
+			}, [$key, $value]);
 		}
 	}
 
