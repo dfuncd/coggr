@@ -46,10 +46,10 @@ class Core
 	/**
 	 * Register a service provider with the application.
 	 *
-	 * @param  TakeiProviderProvider|string  $provider
+	 * @param  Coggr\Service\Provider|string  $provider
 	 * @param  array  $options
 	 * @param  bool   $force
-	 * @return TakeiProviderProvider
+	 * @return Coggr\Service\Provider
 	 */
 	public function register($provider, $options = [], $force = false)
 	{
@@ -86,8 +86,8 @@ class Core
 	/**
 	 * Get the registered service provider instance if it exists.
 	 *
-	 * @param  TakeiProviderProvider|string  $provider
-	 * @return TakeiProviderProvider|null
+	 * @param  Coggr\Service\Provider|string  $provider
+	 * @return Coggr\Service\Provider|null
 	 */
 	public function getProvider($provider)
 	{
@@ -104,7 +104,7 @@ class Core
 	 * Resolve a service provider instance from the class name.
 	 *
 	 * @param  string  $provider
-	 * @return TakeiProviderProvider
+	 * @return Coggr\Service\Provider
 	 */
 	public function resolveProviderClass($provider)
 	{
@@ -114,7 +114,7 @@ class Core
 	/**
 	 * Mark the given provider as registered.
 	 *
-	 * @param TakeiProviderProvider
+	 * @param Coggr\Service\Provider
 	 * @return void
 	 */
 	protected function markAsRegistered($provider)
