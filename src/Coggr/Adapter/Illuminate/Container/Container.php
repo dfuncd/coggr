@@ -7,5 +7,5 @@ use Coggr\Contract\Container\Container as ContainerInterface;
 
 class Container extends IlluminateContainer implements ContainerInterface
 {
-
+	
 }

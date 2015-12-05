@@ -15,24 +15,24 @@ interface Kernel
 	/**
 	 * Handle an incoming HTTP request.
 	 *
-	 * @param  \Symfony\Component\HttpFoundation\Request  $request
-	 * @return \Symfony\Component\HttpFoundation\Response
+	 * @param  \Cogger\Contract\Http\Request  $request
+	 * @return \Cogger\Contract\Http\Response
 	 */
 	public function handle($request);
 
 	/**
 	 * Perform any final actions for the request lifecycle.
 	 *
-	 * @param  \Symfony\Component\HttpFoundation\Request  $request
-	 * @param  \Symfony\Component\HttpFoundation\Response  $response
+	 * @param  \Cogger\Contract\Http\Request  $request
+	 * @param  \Cogger\Contract\Http\Response  $response
 	 * @return void
 	 */
 	public function terminate($request, $response);
 
 	/**
-	 * Get the Laravel application instance.
+	 * Get the Coggr application instance.
 	 *
-	 * @return \Illuminate\Contracts\Foundation\Application
+	 * @return \Cogger\Contract\Application\Core
 	 */
 	public function getApplication();
 
