@@ -41,7 +41,7 @@ namespace Coggr\Http\Request;
  * message and return an instance that contains the changed state.
  */
 
-interface Server
+interface Server extends \Coggr\Http\Request
 {
 	
 	/**
