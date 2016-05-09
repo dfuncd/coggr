@@ -1,6 +1,7 @@
 {
     "name": "prjkt/coggr",
     "description": "A framework for robust architectures",
+    "license": "MIT",
 
     "authors": [
         {
