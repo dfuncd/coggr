@@ -2,8 +2,6 @@
 
 namespace Coggr\Application;
 
-use Illuminate\Container\Container;
-
 class Core
 {
 
