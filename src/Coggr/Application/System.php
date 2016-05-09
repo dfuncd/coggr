@@ -36,9 +36,7 @@ class System
 	 */
 	public function registerBaseBindings()
 	{
-		$this->app = new Container;
 
-		$this->instance('app', $this);
 	}
 
 	/**
