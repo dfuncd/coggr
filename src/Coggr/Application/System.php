@@ -2,7 +2,7 @@
 
 namespace Coggr\Application;
 
-class Core
+class System
 {
 
 	/**
