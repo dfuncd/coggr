@@ -16,8 +16,7 @@
         "vlucas/phpdotenv": "^2.0",
         "symfony/finder": "^2.7",
         "symfony/http-foundation": "~2.7",
-        "symfony/http-kernel": "~2.7",
-        "container-interop/container-interop": "^1.1"
+        "symfony/http-kernel": "~2.7"
     },
 
     "require-dev": {
