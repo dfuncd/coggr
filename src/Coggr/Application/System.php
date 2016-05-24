@@ -36,7 +36,12 @@ class System
 	 */
 	public function registerBaseBindings()
 	{
+		$builder = (new ContainerBuilder)
+			->useAnnotations(true);
 
+		$this->container = $builder->build();
+
+		$this->set('Pugs\Application\Core', $this);
 	}
 
 	/**
