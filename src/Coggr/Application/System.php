@@ -41,7 +41,7 @@ class System
 
 		$this->container = $builder->build();
 
-		$this->set('Pugs\Application\Core', $this);
+		$this->set('Coggr\Application\System', $this);
 	}
 
 	/**
