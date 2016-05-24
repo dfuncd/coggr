@@ -22,6 +22,13 @@ abstract class Provider
 	protected $provides = [];
 
 	/**
+	 * List of classes to be required first before running thee provider
+	 *
+	 * @var array
+	 */
+	protected $requires = [];
+
+	/**
 	 * Class constructor
 	 *
 	 * @param \Coggr\Application\System $system
