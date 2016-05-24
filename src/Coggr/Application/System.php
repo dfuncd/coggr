@@ -61,7 +61,11 @@ class System
 		}
 
 		if ( count($provider->requires) > 0 ) {
-			$this->checkProviderRequires($provider->requires);
+			try {
+				$this->checkProviderRequires($provider->requires);
+			} catch (\Coggr\Exceptions\ProviderNotLoadedException $e) {
+				//
+			}
 		}
 
 		$provider->register();
@@ -129,14 +133,19 @@ class System
 	 * Check a provider's requires property if it satisfy usage
 	 *
 	 * @var array
+	 * @throws Coggr\Exceptions\ProviderNotLoadedException;
 	 * @return boolean
 	 */
 	protected function checkProviderRequires(array $requires)
 	{
 		foreach($requires as $require)
 		{
-			return array_key_exists($require, $this->loadedProviders) ? true : false;
+			if ( ! array_key_exists($require, $this->loadedProviders) ) {
+				throw new Coggr\Exceptions\ProviderNotLoadedException;
+			}
 		}
+
+		return true;
 	}
 	
 }
