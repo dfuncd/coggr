@@ -60,6 +60,10 @@ class System
 			$provider = $this->resolveProviderClass($provider);
 		}
 
+		if ( count($provider->requires) > 0 ) {
+			$this->checkProviderRequires($provider->requires);
+		}
+
 		$provider->register();
 
 		// Once we have registered the service we will iterate through the options
@@ -119,6 +123,20 @@ class System
 
 		$this->serviceProviders[] = $provider;
 		$this->loadedProviders[$class] = true;
+	}
+
+	/**
+	 * Check a provider's requires property if it satisfy usage
+	 *
+	 * @var array
+	 * @return boolean
+	 */
+	protected function checkProviderRequires(array $requires)
+	{
+		foreach($requires as $require)
+		{
+			return array_key_exists($require, $this->loadedProviders) ? true : false;
+		}
 	}
 	
 }
