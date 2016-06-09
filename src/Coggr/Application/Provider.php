@@ -41,7 +41,7 @@ abstract class Provider
 	/**
 	 * @inheritdocs
 	 */
-	public function get($name)
+	public function get(string $name) : object
 	{
 		return $this->system->get($name);
 	}
@@ -51,7 +51,7 @@ abstract class Provider
 	 *
 	 * @return $this
 	 */
-	public function set($name, $object)
+	public function set(string $name, object $object) : self
 	{
 		$this->system->set($name, $object);
 
@@ -65,7 +65,7 @@ abstract class Provider
 	 *
 	 * @return array
 	 */
-	public function getProvides()
+	public function getProvides() : array
 	{
 		return $this->provides;
 	}

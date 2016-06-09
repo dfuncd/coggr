@@ -52,7 +52,7 @@ class System
 	 * @param  bool   $force
 	 * @return Coggr\Service\Provider
 	 */
-	public function register($provider, $options = [], $force = false)
+	public function register(string $provider, array $options = [], bool $force = false)
 	{
 		if ( $registered = $this->getProvider($provider) && ! $force ) {
 			return $registered;
@@ -98,7 +98,7 @@ class System
 	 * @param  Coggr\Service\Provider|string  $provider
 	 * @return Coggr\Service\Provider|null
 	 */
-	public function getProvider($provider)
+	public function getProvider(string $provider) : object
 	{
 		$name = is_string($provider) ? $provider : get_class($provider);
 
@@ -115,7 +115,7 @@ class System
 	 * @param  string  $provider
 	 * @return Coggr\Service\Provider
 	 */
-	public function resolveProviderClass($provider)
+	public function resolveProviderClass($provider) : object
 	{
 		return new $provider($this);
 	}
@@ -126,7 +126,7 @@ class System
 	 * @param Coggr\Service\Provider
 	 * @return void
 	 */
-	protected function markAsRegistered($provider)
+	protected function markAsRegistered(string $provider) : string
 	{
 		$class = get_class($provider);
 
@@ -141,7 +141,7 @@ class System
 	 * @throws Coggr\Exceptions\ProviderNotLoadedException;
 	 * @return boolean
 	 */
-	protected function checkProviderRequires(array $requires)
+	protected function checkProviderRequires(array $requires) : bool
 	{
 		foreach($requires as $require)
 		{
