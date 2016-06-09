@@ -2,6 +2,8 @@
 
 namespace Coggr\Application;
 
+use DI\ContainerBuilder;
+
 class System
 {
 
