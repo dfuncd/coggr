@@ -47,6 +47,26 @@ class System
 	}
 
 	/**
+	 * @inheritdocs
+	 */
+	public function get(string $name)
+	{
+		return $this->container->get($name);
+	}
+
+	/**
+	 * @inheritdocs
+	 *
+	 * @return $this
+	 */
+	public function set(string $name, $object)
+	{
+		$this->container->set($name, $object);
+
+		return $this;
+	}
+
+	/**
 	 * Register a service provider with the application.
 	 *
 	 * @param  Coggr\Service\Provider|string  $provider

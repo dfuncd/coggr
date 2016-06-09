@@ -38,26 +38,6 @@ abstract class Provider
 		$this->system = $system;
 	}
 
-	/**
-	 * @inheritdocs
-	 */
-	public function get(string $name) : object
-	{
-		return $this->system->get($name);
-	}
-
-	/**
-	 * @inheritdocs
-	 *
-	 * @return $this
-	 */
-	public function set(string $name, object $object) : self
-	{
-		$this->system->set($name, $object);
-
-		return $this;
-	}
-
 	abstract public function register();
 
 	/**
