@@ -13,6 +13,13 @@ abstract class Repository
 	protected $entities;
 
 	/**
+	 * Repositories container
+	 *
+	 * @var array
+	 */
+	protected $repositories;
+
+	/**
 	 * Sets the current entity
 	 *
 	 * @param Object $entity
