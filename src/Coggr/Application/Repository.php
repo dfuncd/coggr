@@ -20,6 +20,19 @@ abstract class Repository
 	protected $repositories;
 
 	/**
+	 * Loads entities from an array
+	 *
+	 * @param array $resources
+	 * @return true
+	 */
+	public function loadResources(array $resources) : bool
+	{
+		array_walk($resource, [$this, 'register']);
+
+		return true;
+	}
+
+	/**
 	 * Sets the current entity
 	 *
 	 * @param Object $entity
