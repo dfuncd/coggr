@@ -27,7 +27,7 @@ abstract class Repository
 	 */
 	public function loadResources(array $resources) : bool
 	{
-		array_walk($resource, [$this, 'register']);
+		array_walk($resources, [$this, 'register']);
 
 		return true;
 	}
