@@ -6,11 +6,11 @@ abstract class Repository
 {
 
 	/**
-	 * Entity container
+	 * Entities container
 	 *
-	 * @var Object
+	 * @var array
 	 */
-	protected $entity;
+	protected $entities;
 
 	/**
 	 * Sets the current entity
