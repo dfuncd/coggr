@@ -33,6 +33,31 @@ abstract class Repository
 	}
 
 	/**
+	 * Registers an entity/repository to their appropriate containers
+	 *
+	 * @param string $instance
+	 * @throws \Coggr\Exceptions\ResourceNotAnObject
+	 * @return true
+	 */
+	public function register(string $instance) : bool
+	{
+		if ( ! is_object($instance) ) {
+			throw new \Coggr\Exceptions\ResourceNotAnObject;
+		}
+
+		if ( $instance instanceof \Illuminate\Eloquent\Model ) {
+			$this->entities[$instance->getTable()] = $instance;
+		}
+
+		if ( $instance instanceof Repository) {
+			$repositoryName = strtolower(str_replace('Repository', '', $instance));
+			$this->repositories[$repositoryName] = $instance;
+		}
+
+		return true;
+	}
+
+	/**
 	 * Sets the current entity
 	 *
 	 * @param Object $entity
