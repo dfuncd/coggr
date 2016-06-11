@@ -209,4 +209,21 @@ abstract class Repository
 		return $this->entity;
 	}
 
+	/**
+	 * Mimics the original behavior of the DI
+	 *
+	 * @return Object
+	 */
+	public function __get($key)
+	{
+		try {
+			if (array_key_exists($key, $this->entities)) return $this->entities[$key];
+			if (array_key_exists($key, $this->repositories)) return $this->repositories[$key];
+
+			throw new \App\Exceptions\ResourceNotFound;
+		} catch (\App\Exceptions\ResourceNotFound $e) {
+
+		}
+	}
+
 }
