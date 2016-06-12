@@ -82,6 +82,7 @@ abstract class Repository
 		 * 1. Somehow this function should be smart enough to resolve the entity based on the prefix
 		 *    of the repository. An emphasis in case a developer juggled through the parameters
 		 * 2. Throws an exception if there's no entity to return
+		 * 3. If an entity is defined by setEntity return that instead
 		 */
 		return ! count($this->entities) > 0 && $entity === null ?
 			$this->entities[0]:
