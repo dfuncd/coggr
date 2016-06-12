@@ -97,7 +97,7 @@ abstract class Repository
 	 */
 	public function find($id)
 	{
-		return $this->entity->find($id);
+		return $this->entity()->find($id);
 	}
 
 	/**
@@ -142,7 +142,7 @@ abstract class Repository
 	 */
 	public function create(array $data)
 	{
-		$this->entity = $this->map($data, (new $this->entity))->save();
+		$entity = $this->map($data, (new $this->entity))->save();
 
 		return $this->entity;
 	}
@@ -156,8 +156,8 @@ abstract class Repository
 	 */
 	public function update(array $data, $identifier)
 	{
-		$this->entity = $this->entity->first($identifier);
-		$this->entity = $this->map($data)->save();
+		$entity = $this->entity->first($identifier);
+		$entity = $this->map($data)->save();
 
 		return $this->entity;
 	}
@@ -190,24 +190,24 @@ abstract class Repository
 	 */
 	protected function map(array $inserts, $entity = null)
 	{
-		$this->entity = ! is_null($entity) ? $entity : $this->entity;
+		$entity = ! is_null($entity) ? $entity : $this->entity();
 
 		if ( ! is_object($this->entity) ) {
 			throw new \Coggr\Exceptions\EntityNotDefined;
 		}
 
 		$fields = array_unique(
-			array_merge($this->entity->getFillable(), $this->entity->getHidden(), $this->entity->getGuarded())
+			array_merge($entity->getFillable(), $entity->getHidden(), $entity->getGuarded())
 		);
 
 		foreach($inserts as $key => $val)
 		{
 			if ( in_array($key, $fields) ) {
-				$this->entity->{$key} = $val;
+				$entity->{$key} = $val;
 			}
 		}
 
-		return $this->entity;
+		return $entity;
 	}
 
 	/**
