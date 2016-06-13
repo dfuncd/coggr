@@ -42,7 +42,7 @@ abstract class Repository
 	public function register($instance) : bool
 	{
 		if ( ! is_object($instance) ) {
-			throw new \Coggr\Exceptions\ResourceNotAnObject;
+			$instance = new $instance;
 		}
 
 		if ( $instance instanceof \Illuminate\Eloquent\Model ) {
