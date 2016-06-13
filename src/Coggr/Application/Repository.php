@@ -89,14 +89,6 @@ abstract class Repository
 			return $this->entity;
 		}
 		
-		/**
-		 * Dev Notes
-		 * --
-		 * 1. Somehow this function should be smart enough to resolve the entity based on the prefix
-		 *    of the repository. An emphasis in case a developer juggled through the parameters [DONE]
-		 * 2. Throws an exception if there's no entity to return [DONE]
-		 * 3. If an entity is defined by setEntity return that instead
-		 */
 		if ( ! count($this->entities) > 0 && $entity === null ) {
 			$entityName = strtolower(str_replace('Repository', '', get_class()));
 
