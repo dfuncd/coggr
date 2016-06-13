@@ -81,7 +81,7 @@ abstract class Repository
 		 * --
 		 * 1. Somehow this function should be smart enough to resolve the entity based on the prefix
 		 *    of the repository. An emphasis in case a developer juggled through the parameters [DONE]
-		 * 2. Throws an exception if there's no entity to return
+		 * 2. Throws an exception if there's no entity to return [DONE]
 		 * 3. If an entity is defined by setEntity return that instead
 		 */
 		if ( ! count($this->entities) > 0 && $entity === null ) {
@@ -90,11 +90,14 @@ abstract class Repository
 			return array_key_exists($entityName, $this->entities) ?
 				$this->entities[$entityName]:
 				$this->entities[0];
-		}  
+		}
 
-		return ! count($this->entities) > 0 && $entity === null ?
-			$this->entities[0]:
-			$this->entities[$entity];
+		try {
+			return $this->entities[$entity];
+		} catch (\Coggr\Exceptions\EntityNotDefined $e) {
+			throw new \Coggr\Exceptions\EntityNotDefined($e);
+		}
+			
 	}
 
 	/**
