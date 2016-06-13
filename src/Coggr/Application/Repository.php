@@ -81,6 +81,7 @@ abstract class Repository
 	 * Returns the {first configured|inputted} entity
 	 *
 	 * @param string $entity
+	 * @throws \Coggr\Exceptions\EntityNotDefined
 	 * @return $entity
 	 */
 	public function entity($entity = null)
