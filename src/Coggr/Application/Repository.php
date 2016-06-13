@@ -72,7 +72,9 @@ abstract class Repository
 	 */
 	public function setEntity($entity)
 	{
-		$this->entity = $entity;
+		if ( array_key_exists($entity, $this->entities) ) {
+			$this->entity = $this->entities[$entity];
+		}
 	}
 
 	/**
@@ -83,6 +85,10 @@ abstract class Repository
 	 */
 	public function entity($entity = null)
 	{
+		if ( is_object($this->entity) ) {
+			return $this->entity;
+		}
+		
 		/**
 		 * Dev Notes
 		 * --
