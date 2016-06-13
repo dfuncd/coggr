@@ -6,6 +6,13 @@ abstract class Repository
 {
 
 	/**
+	 * The current entity pointer
+	 *
+	 * @var object
+	 */
+	protected $entity;
+
+	/**
 	 * Entities container
 	 *
 	 * @var array
