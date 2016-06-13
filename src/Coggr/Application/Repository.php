@@ -35,11 +35,11 @@ abstract class Repository
 	/**
 	 * Registers an entity/repository to their appropriate containers
 	 *
-	 * @param string $instance
+	 * @param string|object $instance
 	 * @throws \Coggr\Exceptions\ResourceNotAnObject
 	 * @return true
 	 */
-	public function register(string $instance) : bool
+	public function register($instance) : bool
 	{
 		if ( ! is_object($instance) ) {
 			throw new \Coggr\Exceptions\ResourceNotAnObject;
