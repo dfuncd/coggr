@@ -61,6 +61,8 @@ abstract class Repository
 			$this->repositories[$repositoryName] = $instance;
 		}
 
+		$this->entity = $this->setEntity($this->entity());
+
 		return true;
 	}
 
@@ -70,11 +72,9 @@ abstract class Repository
 	 * @param Object $entity
 	 * @return void
 	 */
-	public function setEntity($entity)
+	protected function setEntity($entity)
 	{
-		if ( array_key_exists($entity, $this->entities) ) {
-			$this->entity = $this->entities[$entity];
-		}
+		$this->entity = $entity;
 	}
 
 	/**
@@ -85,10 +85,6 @@ abstract class Repository
 	 */
 	public function entity($entity = null)
 	{
-		if ( is_object($this->entity) ) {
-			return $this->entity;
-		}
-		
 		if ( ! count($this->entities) > 0 && $entity === null ) {
 			$entityName = strtolower(str_replace('Repository', '', get_class()));
 
@@ -97,12 +93,11 @@ abstract class Repository
 				$this->entities[0];
 		}
 
-		try {
-			return $this->entities[$entity];
-		} catch (\Coggr\Exceptions\EntityNotDefined $e) {
-			throw new \Coggr\Exceptions\EntityNotDefined($e);
+		if ( array_key_exists($entity, $this->entities) ) {
+			return $this->entity = $this->entities[$entity];
 		}
-			
+
+		throw new \Coggr\Exceptions\EntityNotDefined($e);
 	}
 
 	/**
@@ -113,7 +108,7 @@ abstract class Repository
 	 */
 	public function find($id)
 	{
-		return $this->entity()->find($id);
+		return $this->entity->find($id);
 	}
 
 	/**
@@ -206,7 +201,7 @@ abstract class Repository
 	 */
 	protected function map(array $inserts, $entity = null)
 	{
-		$entity = ! is_null($entity) ? $entity : $this->entity();
+		$entity = ! is_null($entity) ? $entity : $this->entity;
 
 		if ( ! is_object($this->entity) ) {
 			throw new \Coggr\Exceptions\EntityNotDefined;
