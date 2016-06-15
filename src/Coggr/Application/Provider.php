@@ -26,7 +26,7 @@ abstract class Provider
 	 *
 	 * @var array
 	 */
-	protected $requires = [];
+	public $requires = [];
 
 	/**
 	 * Class constructor
