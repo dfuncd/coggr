@@ -148,12 +148,14 @@ class System
 	 * @param Coggr\Service\Provider
 	 * @return void
 	 */
-	protected function markAsRegistered(\Coggr\Application\Provider $provider) : string
+	protected function markAsRegistered(\Coggr\Application\Provider $provider) : bool
 	{
 		$class = get_class($provider);
 
 		$this->serviceProviders[] = $provider;
 		$this->loadedProviders[$class] = true;
+
+		return true;
 	}
 
 	/**
