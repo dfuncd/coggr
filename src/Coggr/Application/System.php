@@ -162,7 +162,7 @@ class System
 	 * @param string $provider
 	 * @return bool
 	 */
-	public function isProviderRegistered(string $prodiver) : bool
+	public function isProviderRegistered(string $provider) : bool
 	{
 		return array_key_exists($provider, $this->loadedProviders) ? true : false;
 	}
