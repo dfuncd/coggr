@@ -157,6 +157,17 @@ class System
 	}
 
 	/**
+	 * Checks if a service provider is registered
+	 *
+	 * @param string $provider
+	 * @return bool
+	 */
+	public function isProviderRegistered(string $prodiver) : bool
+	{
+		return array_key_exists($provider, $this->loadedProviders) ? true : false;
+	}
+
+	/**
 	 * Check a provider's requires property if it satisfy usage
 	 *
 	 * @var array
