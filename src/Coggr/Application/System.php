@@ -137,7 +137,7 @@ class System
 	 * @param  string  $provider
 	 * @return Coggr\Service\Provider
 	 */
-	public function resolveProviderClass($provider)
+	public function resolveProviderClass($provider) : \Coggr\Application\Provider
 	{
 		return new $provider($this);
 	}
@@ -148,7 +148,7 @@ class System
 	 * @param Coggr\Service\Provider
 	 * @return void
 	 */
-	protected function markAsRegistered(string $provider) : string
+	protected function markAsRegistered(\Coggr\Application\Provider $provider) : string
 	{
 		$class = get_class($provider);
 
