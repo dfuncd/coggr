@@ -178,7 +178,7 @@ class System
 	{
 		foreach($requires as $require)
 		{
-			if ( ! array_key_exists($require, $this->loadedProviders) ) {
+			if ( ! $this->isProviderRegistered($require) ) {
 				throw new Coggr\Exceptions\ProviderNotLoadedException;
 			}
 		}
