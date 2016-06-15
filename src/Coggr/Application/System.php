@@ -120,7 +120,7 @@ class System
 	 * @param  Coggr\Service\Provider|string  $provider
 	 * @return Coggr\Service\Provider|null
 	 */
-	public function getProvider(string $provider) : object
+	public function getProvider(string $provider)
 	{
 		$name = is_string($provider) ? $provider : get_class($provider);
 
@@ -137,7 +137,7 @@ class System
 	 * @param  string  $provider
 	 * @return Coggr\Service\Provider
 	 */
-	public function resolveProviderClass($provider) : object
+	public function resolveProviderClass($provider)
 	{
 		return new $provider($this);
 	}
