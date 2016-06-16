@@ -196,11 +196,12 @@ abstract class Repository
 	/**
 	 * Mass assignment based on fillable, hidden, and guarded attributes
 	 *
+	 * @param \Coggr\Application\Http\Request $request
 	 * @param array $inserts
 	 * @throws \Coggr\Exceptions\EntityNotDefined
 	 * @return object
 	 */
-	protected function map(array $inserts, $entity = null)
+	protected function map(\Coggr\Application\Http\Request $request, array $inserts, $entity = null)
 	{
 		$entity = ! is_null($entity) ? $entity : $this->entity;
 
@@ -208,9 +209,7 @@ abstract class Repository
 			throw new \Coggr\Exceptions\EntityNotDefined;
 		}
 
-		$fields = array_unique(
-			array_merge($entity->getFillable(), $entity->getHidden(), $entity->getGuarded())
-		);
+		$fields = $request->insertKeys();
 
 		foreach($inserts as $key => $val)
 		{
