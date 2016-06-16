@@ -2,9 +2,9 @@
 
 namespace Coggr\Application;
 
-use DI\ContainerBuilder;
+use Illuminate\Container\Container;
 
-class System
+class System extends Container
 {
 
 	/**
@@ -38,32 +38,11 @@ class System
 	 */
 	public function registerBaseBindings()
 	{
-		$builder = (new ContainerBuilder)
-			->useAnnotations(true);
+		static::setInstance($this);
 
-		$this->container = $builder->build();
+		$this->instance('app', $this);
 
-		$this->set('Coggr\Application\System', $this);
-	}
-
-	/**
-	 * @inheritdocs
-	 */
-	public function get(string $name)
-	{
-		return $this->container->get($name);
-	}
-
-	/**
-	 * @inheritdocs
-	 *
-	 * @return $this
-	 */
-	public function set(string $name, $object)
-	{
-		$this->container->set($name, $object);
-
-		return $this;
+		$this->instance('Illuminate\Container\Container', $this);
 	}
 
 	/**
