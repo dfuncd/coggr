@@ -17,7 +17,7 @@ class SystemTest extends TestCase
 	{
 		$system = new Coggr\Application\System;
 
-		$this->assertInstanceOf('Coggr\Application\System', $system->get('Coggr\Application\System'));
+		$this->assertInstanceOf('Illuminate\Container\Container', $system);
 	}
 
 	public function testProvider()
