@@ -2,9 +2,9 @@
 
 namespace Coggr\Application;
 
-use DI\ContainerBuilder;
+use Illuminate\Container\Container;
 
-class System
+class System extends Container
 {
 
 	/**
@@ -38,43 +38,22 @@ class System
 	 */
 	public function registerBaseBindings()
 	{
-		$builder = (new ContainerBuilder)
-			->useAnnotations(true);
+		static::setInstance($this);
 
-		$this->container = $builder->build();
+		$this->instance('app', $this);
 
-		$this->set('Coggr\Application\System', $this);
-	}
-
-	/**
-	 * @inheritdocs
-	 */
-	public function get(string $name)
-	{
-		return $this->container->get($name);
-	}
-
-	/**
-	 * @inheritdocs
-	 *
-	 * @return $this
-	 */
-	public function set(string $name, $object)
-	{
-		$this->container->set($name, $object);
-
-		return $this;
+		$this->instance('Illuminate\Container\Container', $this);
 	}
 
 	/**
 	 * Register a service provider with the application.
 	 *
-	 * @param  Coggr\Service\Provider|string  $provider
+	 * @param  Coggr\Application\Provider|string  $provider
 	 * @param  array  $options
 	 * @param  bool   $force
-	 * @return Coggr\Service\Provider
+	 * @return Coggr\Application\Provider
 	 */
-	public function register(string $provider, array $options = [], bool $force = false)
+	public function register($provider, array $options = [], bool $force = false)
 	{
 		if ( $registered = $this->getProvider($provider) && ! $force ) {
 			return $registered;
@@ -117,10 +96,10 @@ class System
 	/**
 	 * Get the registered service provider instance if it exists.
 	 *
-	 * @param  Coggr\Service\Provider|string  $provider
-	 * @return Coggr\Service\Provider|null
+	 * @param  Coggr\Application\Provider|string  $provider
+	 * @return Coggr\Application\Provider|null
 	 */
-	public function getProvider(string $provider)
+	public function getProvider($provider)
 	{
 		$name = is_string($provider) ? $provider : get_class($provider);
 
@@ -135,7 +114,7 @@ class System
 	 * Resolve a service provider instance from the class name.
 	 *
 	 * @param  string  $provider
-	 * @return Coggr\Service\Provider
+	 * @return Coggr\Application\Provider
 	 */
 	public function resolveProviderClass($provider) : \Coggr\Application\Provider
 	{
@@ -145,7 +124,7 @@ class System
 	/**
 	 * Mark the given provider as registered.
 	 *
-	 * @param Coggr\Service\Provider
+	 * @param Coggr\Application\Provider
 	 * @return void
 	 */
 	protected function markAsRegistered(\Coggr\Application\Provider $provider) : bool
