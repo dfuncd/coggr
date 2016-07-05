@@ -53,7 +53,7 @@ class System extends Container
 	 * @param  bool   $force
 	 * @return Coggr\Service\Provider
 	 */
-	public function register(string $provider, array $options = [], bool $force = false)
+	public function register($provider, array $options = [], bool $force = false)
 	{
 		if ( $registered = $this->getProvider($provider) && ! $force ) {
 			return $registered;
@@ -99,7 +99,7 @@ class System extends Container
 	 * @param  Coggr\Service\Provider|string  $provider
 	 * @return Coggr\Service\Provider|null
 	 */
-	public function getProvider(string $provider)
+	public function getProvider($provider)
 	{
 		$name = is_string($provider) ? $provider : get_class($provider);
 
